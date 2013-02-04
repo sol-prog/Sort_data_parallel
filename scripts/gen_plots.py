@@ -1,5 +1,3 @@
-# THIS CODE IS A SIMPLE HACK (A MESS) TO GET THE JOB DONE - USE WITH CARE
-
 # Average the data sets and calculate the standard deviation for each set
 # In order to run the script you will need Python 2.7.3, Numpy and Matplotlib
 

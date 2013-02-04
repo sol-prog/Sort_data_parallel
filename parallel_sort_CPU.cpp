@@ -68,6 +68,19 @@ double run_tests(std::vector<double> &V, size_t parts, size_t mem) {
     return boost::chrono::duration <double, boost::milli> (end - start).count();
 }
 
+// Use only std::sort for parts = 1
+double run_tests_std_sort(std::vector<double> &V, size_t parts, size_t mem) {
+
+    auto start = boost::chrono::steady_clock::now();
+    
+    std::sort(std::begin(V), std::end(V));
+    
+    auto end = boost::chrono::steady_clock::now();
+    
+    return boost::chrono::duration <double, boost::milli> (end - start).count();
+}
+
+
 
 int main(int argc, char **argv) {
     std::vector<double> V;
@@ -85,13 +98,7 @@ int main(int argc, char **argv) {
     
     // Get the number of parts
     std::string s(argv[1]);
-    //try {
-        parts = (size_t) std::stoi(s);
-    //}
-    //catch (std::exception &ex) {
-    //    std::cout << "ERROR! Please use a valid numerical input!" << std::endl;
-    //    std::exit(1);
-    //}
+    parts = (size_t) std::stoi(s);
     
     size_t step = 10;
     size_t mem = 10000000;
@@ -100,7 +107,12 @@ int main(int argc, char **argv) {
         //Fill V with random numbers in the range [0,1]:
         V.resize(i);
         rnd_fill(V, 0.0, 1.0, seed);
-        std::cout << i << "\t" << run_tests(V, parts, i) << std::endl;        
+        if(parts == 1) {
+            std::cout << i << "\t" << run_tests_std_sort(V, parts, i) << std::endl;
+        }
+        else {
+            std::cout << i << "\t" << run_tests(V, parts, i) << std::endl;        
+        }
     }
     
     return 0;

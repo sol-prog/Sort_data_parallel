@@ -1,4 +1,3 @@
-# THIS CODE IS A SIMPLE HACK (A MESS) TO GET THE JOB DONE - USE WITH CARE
 import subprocess
 
 def run_tests(prefix, nr_tests, threads):
