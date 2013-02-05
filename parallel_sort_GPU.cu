@@ -20,8 +20,6 @@ void rnd_fill(thrust::host_vector<double> &V, const double lower, const double u
     }
 }
 
-
-
 int main() {
     thrust::host_vector<double> V;
     thrust::device_vector<double> d_V;
@@ -66,8 +64,8 @@ int main() {
         double dt2 = boost::chrono::duration <double, boost::milli> (end_cpu - start_cpu).count();
 	    
 
-	    //std::cout << i << "\t" << elapsedTime << "\t" << dt1 + dt2 << std::endl;
-	    std::cout << i << "\t" << elapsedTime + dt1 + dt2 << std::endl;
+	//std::cout << i << "\t" << elapsedTime << "\t" << dt1 + dt2 << std::endl;
+	std::cout << i << "\t" << elapsedTime + dt1 + dt2 << std::endl;
     }
     
     return 0;
