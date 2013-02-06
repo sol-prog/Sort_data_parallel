@@ -14,9 +14,7 @@ void test_sort(std::vector<double> &V, size_t left, size_t right) {
 
 //Merge V[n0:n1] with V[n2:n3]. The result is put back to V[n0:n3]
 void par_merge(std::vector<double> &V, size_t n0, size_t n1, size_t n2, size_t n3) {
-    std::vector<double> aux(n1 - n0 + n3 - n2);
-    std::merge(std::begin(V) + n0, std::begin(V) + n1, std::begin(V) + n2, std::begin(V) + n3, std::begin(aux));
-    std::copy(std::begin(aux), std::end(aux), std::begin(V) + n0);
+    std::inplace_merge(std::begin(V) + n0, std::begin(V) + n1, std::begin(V) + n3);
 }
 
 double run_tests(std::vector<double> &V, size_t parts, size_t mem) {
